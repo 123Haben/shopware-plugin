@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Edit Contact</h1>
+    <form action="{{ path('frontend.contact.edit', {'id': contact.id}) }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ contact.name }}" required>
+
+        <label for="nachname">Nachname:</label>
+        <input type="text" id="nachname" name="nachname" value="{{ contact.nachname }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ contact.email }}" required>
+
+        <label for="telefon">Telefon:</label>
+        <input type="tel" id="telefon" name="telefon" value="{{ contact.telefon }}" required>
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" value="{{ contact.street }}" required>
+
+        <label for="number">Number:</label>
+        <input type="text" id="number" name="number" value="{{ contact.number }}" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" value="{{ contact.city }}" required>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="{{ contact.country }}" required>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{# storefront/page/contact/list.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neueste Kontakte</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1>Neueste Kontakte</h1>
+
+{% if latestContacts is not empty %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Nachname</th>
+            <th>Email</th>
+            <th>Alter</th>
+            <th>Telefon</th>
+            <th>Straße</th>
+            <th>Nummer</th>
+            <th>Postleitzahl</th>
+            <th>Stadt</th>
+            <th>Land</th>
+            <th>Erstellt am</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in latestContacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.nachname }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.age }}</td>
+                <td>{{ contact.telefon }}</td>
+                <td>{{ contact.street }}</td>
+                <td>{{ contact.number }}</td>
+                <td>{{ contact.postcode }}</td>
+                <td>{{ contact.city }}</td>
+                <td>{{ contact.country }}</td>
+                <td>{{ contact.createdAt|date('d.m.Y H:i') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Es gibt keine neuesten Kontakte.</p>
+{% endif %}
+</body>
+</html>

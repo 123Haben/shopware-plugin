@@ -1,0 +1,59 @@
+{# templates/storefront/page/firma/contacts.html.twig #}
+
+
+{% block page_title %}
+    {% trans %}Kontakte der Firma {{ firma.name }}{% endtrans %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Kontakte der Firma {{ firma.name }}</h1>
+        <p>Firmendetails:</p>
+        <ul>
+            <li><strong>ID:</strong> {{ firma.id }}</li>
+            <li><strong>Name:</strong> {{ firma.name }}</li>
+            <li><strong>Nummer:</strong> {{ firma.number }}</li>
+            <li><strong>E-Mail:</strong> {{ firma.email }}</li>
+            <li><strong>Stadt:</strong> {{ firma.city }}</li>
+            <li><strong>Land:</strong> {{ firma.country }}</li>
+        </ul>
+        <hr>
+        <h2>Kontakte</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Nachname</th>
+                <th>E-Mail</th>
+                <th>Alter</th>
+                <th>Telefon</th>
+                <th>Adresse</th>
+                <th>Postleitzahl</th>
+                <th>Stadt</th>
+                <th>Land</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.nachname }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.age }}</td>
+                    <td>{{ contact.telefon }}</td>
+                    <td>{{ contact.street }} {{ contact.number }}</td>
+                    <td>{{ contact.postcode }}</td>
+                    <td>{{ contact.city }}</td>
+                    <td>{{ contact.country }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">Keine Kontakte gefunden.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

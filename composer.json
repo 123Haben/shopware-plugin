@@ -1,0 +1,27 @@
+{
+    "name": "basic-plugin/isf-basic-plugin",
+    "description": "Skeleton plugin",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "6.5.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "BasicPlugin\\IsfBasicPlugin",
+        "label": {
+            "de-DE": "Contact plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "BasicPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BasicPlugin\\Tests\\": "tests/"
+        }
+    }
+}

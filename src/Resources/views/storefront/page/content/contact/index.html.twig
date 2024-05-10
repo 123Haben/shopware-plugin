@@ -1,0 +1,26 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_content %}
+
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Contact List</title>
+    </head>
+    <body>
+    <h1>Contact List</h1>
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                <strong>Name:</strong> {{ contact.name }} <br>
+                <strong>Email:</strong> {{ contact.email }} <br>
+                <strong>Message:</strong> {{ contact.message }} <br>
+            </li>
+        {% endfor %}
+    </ul>
+    </body>
+    </html>
+
+{% endblock %}

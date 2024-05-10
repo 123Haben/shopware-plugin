@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="BasicPlugin\Command\ExampleCommand">
+            <tag name="console.command"/>
+        </service>
+
+        <service id="BasicPlugin\Core\Content\Contact\ContactDefinition">
+            <tag name="shopware.entity.definition" entity="my_plugin_contact" />
+        </service>
+
+        <service id="BasicPlugin\Core\Content\Firma\FirmaDefinition">
+            <tag name="shopware.entity.definition" entity="my_plugin_firma" />
+        </service>
+
+
+        <service id="BasicPlugin\ScheduledTask\ExampleTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="BasicPlugin\Subscriber\MySubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="BasicPlugin\Storefront\Controller\ExampleController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+
+        </service>
+
+
+        <service id="BasicPlugin\Storefront\Controller\ContactController" public="true">
+            <argument type="service" id="my_plugin_contact.repository" />
+            <argument type="service" id="my_plugin_firma.repository" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service>
+
+
+        <service id="BasicPlugin\Storefront\Controller\CompanyController" public="true">
+            <argument type="service" id="my_plugin_firma.repository" />
+            <argument type="service" id="my_plugin_contact.repository" />
+
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+
+        </service>
+
+        <service id="BasicPlugin\Form\ContactFormType" class="BasicPlugin\Form\ContactFormType">
+            <tag name="form.type"/>
+        </service>
+
+        <service id="BasicPlugin\Content\Speaker\SpeakerDefinition">
+
+        </service>
+
+        <service id="BasicPlugin\Content\Speaker\SpeakerHydrator" public="true">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="BasicPlugin\Core\Content\Example\SalesChannel\ExampleRoute">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="BasicPlugin\Service\CustomFieldsInstaller">
+            <argument type="service" id="custom_field_set.repository"/>
+            <argument type="service" id="custom_field_set_relation.repository"/>
+        </service>
+
+    </services>
+</container>

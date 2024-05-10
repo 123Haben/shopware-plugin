@@ -1,0 +1,22 @@
+{# templates/storefront/page/firma/contacts.html.twig #}
+
+
+{% block content %}
+    <div class="firma-contacts">
+        <h1>{{ firma.name }}</h1>
+        <p>{{ firma.city }}, {{ firma.country }}</p>
+
+        <h2>Kontakte</h2>
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    <strong>{{ contact.name }} {{ contact.nachname }}</strong>
+                    <p>Email: {{ contact.email }}</p>
+                    <p>Alter: {{ contact.age }}</p>
+                    <p>Telefon: {{ contact.telefon }}</p>
+                    <p>Adresse: {{ contact.street }} {{ contact.number }}, {{ contact.postcode }} {{ contact.city }}, {{ contact.country }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

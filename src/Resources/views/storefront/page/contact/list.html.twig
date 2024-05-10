@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: -100px;
+        }
+
+        .contact {
+            margin-top: -500px;
+            margin-right: -500px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling für die Buttons */
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="contact">
+    <h1>Kunden Liste</h1>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Nachname</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Street</th>
+        <th>NS</th>
+        <th>PLZ</th>
+        <th>Stadt</th>
+        <th>Land</th>
+        <th>Firma</th> <!-- Neue Spalte für die Firma -->
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Lock/Unlock</th>
+        <th>Totalkunden</th> <!-- Neue Spalte für die Gesamtzahl der Kunden -->
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.nachname }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.telefon }}</td>
+            <td>{{ item.street }}</td>
+            <td>{{ item.number }}</td>
+            <td>{{ item.postcode }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.firma.name }}</td>  <!-- Anzeigen des Firmennamens -->
+            <td><a href="{{ path('frontend.contact.edit', {'id': item.id}) }}">Edit</a></td>
+            <td>
+                <form action="{{ path('frontend.contact.delete', {'id': item.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                {% if item.active %}
+                    <form action="{{ path('frontend.contact.lock', {'id': item.id}) }}" method="post">
+
+                        <button type="submit">Lock</button>
+                    </form>
+                {% else %}
+                    <form action="{{ path('frontend.contact.unlock', {'id': item.id}) }}" method="post">
+                        <button type="submit">Unlock</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="14"></td> <!-- Leere Zellen für die vorherigen Spalten -->
+        <td>{{ totallist }}</td> <!-- Gesamtzahl der Kunden -->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

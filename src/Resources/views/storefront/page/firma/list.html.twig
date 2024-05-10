@@ -1,0 +1,40 @@
+{# templates/storefront/page/firma/list.html.twig #}
+
+
+{% block page_title %}
+    {% trans %}Firmenliste{% endtrans %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Firmenliste</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Nummer</th>
+                <th>E-Mail</th>
+                <th>Stadt</th>
+                <th>Land</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for firm in firma %}
+                <tr>
+                    <td>{{ firm.id }}</td>
+                    <td>{{ firm.name }}</td>
+                    <td>{{ firm.number }}</td>
+                    <td>{{ firm.email }}</td>
+                    <td>{{ firm.city }}</td>
+                    <td>{{ firm.country }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Keine Firmen gefunden.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
